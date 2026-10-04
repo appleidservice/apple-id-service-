@@ -1,0 +1,3015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#06152b">
+
+<title>Apple ID Service | অ্যাপেল আইডি সার্ভিস</title>
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --navy-950:#020713;
+    --navy-900:#061225;
+    --navy-850:#081a32;
+    --navy-800:#0b2341;
+
+    --gold:#ffd75a;
+    --gold-light:#ffe99a;
+    --gold-dark:#c79520;
+
+    --blue:#4c94ff;
+    --blue-dark:#1765d8;
+
+    --green:#24d991;
+    --red:#ff6d7a;
+
+    --white:#ffffff;
+    --text:#eaf1fa;
+    --muted:#91a5bd;
+
+    --border:rgba(255,255,255,.10);
+    --shadow:0 25px 70px rgba(0,0,0,.45);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color:var(--white);
+
+    background:
+        radial-gradient(
+            circle at 15% 5%,
+            rgba(45,115,255,.18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(255,215,90,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(35,110,255,.10),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #01050d,
+            #06152b 52%,
+            #020914
+        );
+
+    overflow-x:hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND LIGHTS
+========================================================= */
+
+.bg-light{
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    filter:blur(100px);
+    pointer-events:none;
+    z-index:-1;
+    opacity:.16;
+}
+
+.bg-light.one{
+    background:#2478ff;
+    top:-120px;
+    left:-120px;
+    animation:floatOne 9s ease-in-out infinite alternate;
+}
+
+.bg-light.two{
+    background:#ffd75a;
+    right:-130px;
+    bottom:-100px;
+    animation:floatTwo 11s ease-in-out infinite alternate;
+}
+
+@keyframes floatOne{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(70px,55px);
+    }
+}
+
+@keyframes floatTwo{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-50px,-60px);
+    }
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.page{
+    width:100%;
+    max-width:680px;
+    margin:0 auto;
+    padding:25px 14px 45px;
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.brand-icon{
+    width:72px;
+    height:72px;
+
+    margin:0 auto 13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:22px;
+
+    font-size:32px;
+    font-weight:900;
+
+    color:var(--gold);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025)
+        );
+
+    border:1px solid rgba(255,215,90,.35);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 35px rgba(255,215,90,.08);
+
+    position:relative;
+
+    animation:brandFloat 4s ease-in-out infinite;
+}
+
+.brand-icon::before{
+    content:"";
+    position:absolute;
+    inset:-5px;
+
+    border-radius:26px;
+
+    border:1px solid rgba(255,215,90,.13);
+
+    animation:ringPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes brandFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+@keyframes ringPulse{
+    0%,100%{
+        transform:scale(1);
+        opacity:.25;
+    }
+    50%{
+        transform:scale(1.06);
+        opacity:.7;
+    }
+}
+
+.brand h1{
+    font-size:29px;
+    font-weight:900;
+    letter-spacing:-.5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            var(--gold),
+            #ffffff
+        );
+
+    background-size:200% auto;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:titleShine 4s linear infinite;
+}
+
+@keyframes titleShine{
+    from{
+        background-position:0% center;
+    }
+    to{
+        background-position:200% center;
+    }
+}
+
+.brand p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.progress{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+
+    margin-bottom:18px;
+}
+
+.progress-step{
+    text-align:center;
+    position:relative;
+}
+
+.progress-circle{
+    width:34px;
+    height:34px;
+
+    margin:0 auto 6px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:12px;
+    font-weight:900;
+
+    color:#60748d;
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    transition:
+        background .35s ease,
+        color .35s ease,
+        border .35s ease,
+        box-shadow .35s ease;
+}
+
+.progress-step.active .progress-circle,
+.progress-step.completed .progress-circle{
+    color:#07111f;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 20px rgba(255,215,90,.25);
+}
+
+.progress-step span{
+    font-size:9px;
+    color:#637891;
+}
+
+.progress-step.active span,
+.progress-step.completed span{
+    color:var(--gold);
+}
+
+
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
+.portal-card{
+    position:relative;
+    overflow:hidden;
+
+    padding:24px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(12,37,68,.94),
+            rgba(4,15,29,.97)
+        );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.portal-card::before{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-100%;
+
+    width:65%;
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    animation:topShine 5s ease-in-out infinite;
+}
+
+@keyframes topShine{
+    0%{
+        left:-100%;
+    }
+
+    45%,100%{
+        left:130%;
+    }
+}
+
+
+/* =========================================================
+   STEP
+========================================================= */
+
+.step{
+    display:none;
+}
+
+.step.active{
+    display:block;
+    animation:stepAppear .35s ease;
+}
+
+@keyframes stepAppear{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.step-header{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.step-header h2{
+    font-size:21px;
+    font-weight:850;
+}
+
+.step-header p{
+    margin-top:6px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+
+/* =========================================================
+   SERVICE CARDS
+========================================================= */
+
+.service-list{
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+}
+
+
+/* IMPORTANT:
+   Real button instead of div.
+   This makes selection reliable.
+*/
+
+.service-card{
+    width:100%;
+
+    position:relative;
+
+    text-align:left;
+
+    border:none;
+    outline:none;
+
+    cursor:pointer;
+
+    padding:18px 48px 18px 18px;
+
+    border-radius:19px;
+
+    color:var(--white);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+
+    border:1px solid rgba(255,255,255,.10);
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+
+    overflow:hidden;
+}
+
+
+/* hover */
+
+.service-card:hover{
+    transform:translateY(-2px);
+
+    border-color:
+        rgba(255,215,90,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+}
+
+
+/* SELECTED */
+
+.service-card.selected{
+
+    border-color:
+        var(--gold);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,215,90,.15),
+            rgba(31,102,202,.13)
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.25),
+        0 0 0 1px rgba(255,215,90,.12),
+        0 0 30px rgba(255,215,90,.12);
+
+    transform:translateY(-2px);
+}
+
+
+/* LEFT GOLD LIGHT */
+
+.service-card.selected::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    top:10px;
+    bottom:10px;
+
+    width:4px;
+
+    border-radius:0 5px 5px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,215,90,.75);
+
+    animation:goldBar .35s ease;
+}
+
+@keyframes goldBar{
+    from{
+        height:0;
+        opacity:0;
+    }
+
+    to{
+        height:calc(100% - 20px);
+        opacity:1;
+    }
+}
+
+
+/* SERVICE ICON */
+
+.service-icon{
+    width:42px;
+    height:42px;
+
+    float:left;
+
+    margin-right:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    color:var(--blue);
+
+    font-size:18px;
+
+    transition:.3s;
+}
+
+.service-card.selected .service-icon{
+    color:#07111f;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--gold-light),
+            var(--gold-dark)
+        );
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 20px rgba(255,215,90,.22);
+
+    transform:scale(1.05);
+}
+
+
+/* TEXT */
+
+.service-title{
+    padding-top:2px;
+
+    font-size:16px;
+    font-weight:850;
+
+    transition:.25s;
+}
+
+.service-card.selected .service-title{
+    color:var(--gold-light);
+}
+
+.service-subtitle{
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:12.5px;
+    line-height:1.45;
+}
+
+
+/* YELLOW SELECTION LIGHT */
+
+.selection-indicator{
+
+    position:absolute;
+
+    right:16px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:27px;
+    height:27px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:transparent;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    transition:
+        .3s ease;
+}
+
+
+/* SELECTED YELLOW LIGHT */
+
+.service-card.selected .selection-indicator{
+
+    color:#07111f;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff2a8,
+            var(--gold),
+            #d29d20
+        );
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 8px rgba(255,215,90,.95),
+        0 0 20px rgba(255,215,90,.65),
+        0 0 36px rgba(255,215,90,.30);
+
+    animation:
+        selectedLight .45s ease;
+}
+
+@keyframes selectedLight{
+
+    0%{
+        transform:
+            translateY(-50%)
+            scale(.55);
+
+        opacity:0;
+    }
+
+    65%{
+        transform:
+            translateY(-50%)
+            scale(1.15);
+
+        opacity:1;
+    }
+
+    100%{
+        transform:
+            translateY(-50%)
+            scale(1);
+    }
+}
+
+
+/* CHECK */
+
+.selection-indicator::after{
+    content:"";
+    width:7px;
+    height:12px;
+
+    border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor;
+
+    transform:
+        rotate(45deg)
+        translate(-1px,-1px);
+
+    opacity:0;
+}
+
+.service-card.selected
+.selection-indicator::after{
+    opacity:1;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+
+    margin-bottom:7px;
+
+    font-size:13px;
+    font-weight:750;
+
+    color:#eaf1fa;
+}
+
+.form-group label .bn{
+    color:var(--muted);
+    font-weight:500;
+}
+
+.required{
+    color:var(--gold);
+}
+
+input,
+textarea{
+
+    width:100%;
+
+    border:1px solid rgba(255,255,255,.11);
+
+    outline:none;
+
+    color:#fff;
+
+    background:
+        rgba(1,10,22,.68);
+
+    border-radius:14px;
+
+    padding:13px 14px;
+
+    font-family:inherit;
+
+    font-size:14px;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+input:focus,
+textarea:focus{
+
+    border-color:
+        var(--gold);
+
+    background:
+        rgba(1,10,22,.82);
+
+    box-shadow:
+        0 0 0 3px rgba(255,215,90,.07),
+        0 0 20px rgba(255,215,90,.06);
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#60758e;
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+
+/* =========================================================
+   PAYMENT
+========================================================= */
+
+.payment-card{
+
+    padding:18px;
+
+    margin-bottom:16px;
+
+    border-radius:20px;
+
+    border:
+        1px solid rgba(255,215,90,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,215,90,.08),
+            rgba(35,105,190,.045)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.selected-service-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-bottom:10px;
+}
+
+.selected-service-label strong{
+    color:#fff;
+}
+
+.payment-price{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    padding:14px 0;
+
+    margin-bottom:14px;
+
+    border-top:
+        1px solid rgba(255,255,255,.09);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.09);
+}
+
+.payment-price-label{
+    color:#dbe5f1;
+    font-size:13px;
+}
+
+.payment-amount{
+
+    color:var(--gold);
+
+    font-size:28px;
+
+    font-weight:950;
+
+    text-shadow:
+        0 0 22px rgba(255,215,90,.25);
+}
+
+.payment-message{
+
+    margin-bottom:14px;
+
+    color:#d8e4f1;
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+.payment-message strong{
+    color:var(--gold-light);
+}
+
+.bkash-label{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.bkash-number{
+
+    margin-top:4px;
+
+    font-size:25px;
+
+    font-weight:950;
+
+    letter-spacing:1px;
+
+    color:#fff;
+}
+
+.payment-help{
+
+    margin-top:10px;
+
+    color:#94aac1;
+
+    font-size:11px;
+
+    line-height:1.55;
+}
+
+
+/* =========================================================
+   PAYMENT REFERENCE
+========================================================= */
+
+.reference-box{
+
+    padding:13px;
+
+    margin-bottom:16px;
+
+    border-radius:14px;
+
+    background:
+        rgba(36,217,145,.045);
+
+    border:
+        1px solid rgba(36,217,145,.15);
+
+    color:#aac8b9;
+
+    font-size:11.5px;
+
+    line-height:1.6;
+}
+
+.reference-box strong{
+    color:#d6f4e5;
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.button-row{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.btn{
+
+    flex:1;
+
+    min-height:50px;
+
+    padding:12px 16px;
+
+    border-radius:14px;
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    font-weight:850;
+
+    transition:
+        transform .2s ease,
+        filter .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+.btn-primary{
+
+    color:#07111f;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe99a,
+            #ffd75a,
+            #c99721
+        );
+
+    box-shadow:
+        0 10px 30px rgba(255,215,90,.15);
+}
+
+.btn-primary:hover{
+
+    transform:translateY(-2px);
+
+    filter:brightness(1.06);
+
+    box-shadow:
+        0 14px 35px rgba(255,215,90,.22);
+}
+
+.btn-secondary{
+
+    color:#d9e4f1;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid rgba(255,255,255,.11);
+}
+
+.btn-secondary:hover{
+
+    background:
+        rgba(255,255,255,.08);
+
+    transform:translateY(-1px);
+}
+
+.btn:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+    transform:none;
+}
+
+
+/* =========================================================
+   ALERT
+========================================================= */
+
+.alert{
+
+    display:none;
+
+    padding:12px 14px;
+
+    margin-bottom:16px;
+
+    border-radius:13px;
+
+    color:#ffc0c7;
+
+    background:
+        rgba(255,70,90,.08);
+
+    border:
+        1px solid rgba(255,70,90,.22);
+
+    font-size:12px;
+
+    line-height:1.5;
+}
+
+.alert.show{
+    display:block;
+    animation:alertIn .25s ease;
+}
+
+@keyframes alertIn{
+    from{
+        opacity:0;
+        transform:translateY(-5px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    display:none;
+
+    text-align:center;
+
+    margin-top:13px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.loading.show{
+    display:block;
+}
+
+.spinner{
+
+    display:inline-block;
+
+    width:17px;
+    height:17px;
+
+    margin-right:6px;
+
+    vertical-align:middle;
+
+    border-radius:50%;
+
+    border:
+        2px solid rgba(255,255,255,.13);
+
+    border-top-color:
+        var(--gold);
+
+    animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   SUCCESS
+========================================================= */
+
+.success{
+    text-align:center;
+    padding:12px 0 5px;
+}
+
+.success-icon{
+
+    width:82px;
+    height:82px;
+
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--green);
+
+    font-size:36px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(36,217,145,.18),
+            rgba(36,217,145,.03)
+        );
+
+    border:
+        1px solid rgba(36,217,145,.42);
+
+    box-shadow:
+        0 0 35px rgba(36,217,145,.12);
+
+    animation:successPop .6s ease;
+}
+
+@keyframes successPop{
+
+    0%{
+        transform:scale(.4);
+        opacity:0;
+    }
+
+    70%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.success h2{
+    font-size:21px;
+}
+
+.success-description{
+
+    margin-top:12px;
+
+    color:#b7c7d9;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.order-label{
+
+    margin-top:18px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.order-code{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    padding:12px 20px;
+
+    border-radius:14px;
+
+    color:var(--gold-light);
+
+    font-size:21px;
+
+    font-weight:950;
+
+    letter-spacing:1px;
+
+    background:
+        rgba(255,215,90,.07);
+
+    border:
+        1px solid rgba(255,215,90,.28);
+
+    box-shadow:
+        0 0 25px rgba(255,215,90,.07);
+}
+
+.whatsapp-btn{
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    width:100%;
+
+    min-height:50px;
+
+    margin-top:20px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:850;
+
+    background:
+        linear-gradient(
+            135deg,
+            #19b66f,
+            #087c4c
+        );
+
+    box-shadow:
+        0 10px 28px rgba(20,170,100,.16);
+
+    transition:.25s;
+}
+
+.whatsapp-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:17px;
+
+    color:#61758e;
+
+    font-size:10px;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:520px){
+
+    .page{
+        padding:
+            16px 9px 35px;
+    }
+
+    .brand{
+        margin-bottom:21px;
+    }
+
+    .brand-icon{
+        width:66px;
+        height:66px;
+        border-radius:20px;
+    }
+
+    .brand h1{
+        font-size:24px;
+    }
+
+    .portal-card{
+        padding:17px;
+        border-radius:22px;
+    }
+
+    .service-card{
+        padding:
+            16px 45px 16px 14px;
+    }
+
+    .service-icon{
+        width:39px;
+        height:39px;
+        margin-right:10px;
+    }
+
+    .service-title{
+        font-size:14.5px;
+    }
+
+    .service-subtitle{
+        font-size:11.5px;
+    }
+
+    .payment-amount{
+        font-size:24px;
+    }
+
+    .bkash-number{
+        font-size:22px;
+    }
+
+    .button-row{
+        flex-direction:column-reverse;
+    }
+
+    .btn{
+        width:100%;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="bg-light one"></div>
+<div class="bg-light two"></div>
+
+
+<main class="page">
+
+
+    <!-- =====================================================
+         BRAND
+    ====================================================== -->
+
+    <header class="brand">
+
+        <div class="brand-icon">
+            
+        </div>
+
+        <h1>
+            Apple ID Service
+        </h1>
+
+        <p>
+            অ্যাপেল আইডি সংক্রান্ত সেবা
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         PROGRESS
+    ====================================================== -->
+
+    <div class="progress">
+
+        <div
+            class="progress-step active"
+            id="progress1"
+        >
+
+            <div class="progress-circle">
+                1
+            </div>
+
+            <span>
+                Service
+            </span>
+
+        </div>
+
+
+        <div
+            class="progress-step"
+            id="progress2"
+        >
+
+            <div class="progress-circle">
+                2
+            </div>
+
+            <span>
+                Information
+            </span>
+
+        </div>
+
+
+        <div
+            class="progress-step"
+            id="progress3"
+        >
+
+            <div class="progress-circle">
+                3
+            </div>
+
+            <span>
+                Payment
+            </span>
+
+        </div>
+
+
+        <div
+            class="progress-step"
+            id="progress4"
+        >
+
+            <div class="progress-circle">
+                4
+            </div>
+
+            <span>
+                Complete
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PORTAL CARD
+    ====================================================== -->
+
+    <section class="portal-card">
+
+
+        <!-- ALERT -->
+
+        <div
+            class="alert"
+            id="alertBox"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- =================================================
+             STEP 1
+        ================================================== -->
+
+        <div
+            class="step active"
+            id="step1"
+        >
+
+            <div class="step-header">
+
+                <h2>
+                    Choose Your Service
+                </h2>
+
+                <p>
+                    আপনার প্রয়োজনীয় সেবাটি নির্বাচন করুন
+                </p>
+
+            </div>
+
+
+            <div class="service-list">
+
+
+                <!-- NEW APPLE ID -->
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="New Apple ID Create"
+                    onclick="selectService(this)"
+                >
+
+                    <div class="service-icon">
+                        ✦
+                    </div>
+
+                    <div class="service-title">
+                        New Apple ID Create
+                    </div>
+
+                    <div class="service-subtitle">
+                        নতুন Apple ID তৈরি
+                    </div>
+
+                    <div class="selection-indicator"></div>
+
+                </button>
+
+
+                <!-- RECOVERY -->
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="Apple Account Recovery"
+                    onclick="selectService(this)"
+                >
+
+                    <div class="service-icon">
+                        ↻
+                    </div>
+
+                    <div class="service-title">
+                        Apple Account Recovery
+                    </div>
+
+                    <div class="service-subtitle">
+                        Apple Account পুনরুদ্ধার সহায়তা
+                    </div>
+
+                    <div class="selection-indicator"></div>
+
+                </button>
+
+
+                <!-- OTHER -->
+
+                <button
+                    type="button"
+                    class="service-card"
+                    data-service="Other Service Request"
+                    onclick="selectService(this)"
+                >
+
+                    <div class="service-icon">
+                        ⚙
+                    </div>
+
+                    <div class="service-title">
+                        Other Service Request
+                    </div>
+
+                    <div class="service-subtitle">
+                        অন্যান্য Apple ID / Software সমস্যা
+                    </div>
+
+                    <div class="selection-indicator"></div>
+
+                </button>
+
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="goToInformation()"
+                >
+                    Continue / এগিয়ে যান
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STEP 2
+        ================================================== -->
+
+        <div
+            class="step"
+            id="step2"
+        >
+
+            <div class="step-header">
+
+                <h2>
+                    Customer Information
+                </h2>
+
+                <p>
+                    আপনার প্রয়োজনীয় তথ্য দিন
+                </p>
+
+            </div>
+
+
+            <form
+                id="customerForm"
+                novalidate
+            >
+
+
+                <!-- NEW APPLE ID FIELDS -->
+
+                <div id="newAppleFields">
+
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+                            Full Name
+                            <span class="bn">
+                                / পূর্ণ নাম
+                            </span>
+
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            autocomplete="name"
+                            placeholder="আপনার পূর্ণ নাম লিখুন"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="birthdayDate">
+                            Birthday Date
+                            <span class="bn">
+                                / জন্ম তারিখ
+                            </span>
+
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="birthdayDate"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email
+                            <span class="bn">
+                                / ইমেইল
+                            </span>
+
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            autocomplete="email"
+                            placeholder="example@email.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phoneNumber">
+                            Phone Number
+                            <span class="bn">
+                                / ফোন নম্বর
+                            </span>
+
+                            <span class="required">
+                                *
+                            </span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phoneNumber"
+                            autocomplete="tel"
+                            inputmode="tel"
+                            placeholder="01XXXXXXXXX"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- RECOVERY -->
+
+                <div
+                    id="recoveryFields"
+                    style="display:none;"
+                >
+
+                    <div class="form-group">
+
+                        <label for="recoveryEmail">
+
+                            Email
+                            <span class="bn">
+                                / ইমেইল
+                            </span>
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="email"
+                            id="recoveryEmail"
+                            autocomplete="email"
+                            placeholder="Apple Account-এর Email"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- WHATSAPP -->
+
+                <div class="form-group">
+
+                    <label for="whatsappNumber">
+
+                        WhatsApp Number
+                        <span class="bn">
+                            / WhatsApp নম্বর
+                        </span>
+
+                        <span class="required">
+                            *
+                        </span>
+
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="whatsappNumber"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        placeholder="01XXXXXXXXX"
+                    >
+
+                </div>
+
+
+                <!-- OTHER INFORMATION -->
+
+                <div class="form-group">
+
+                    <label for="otherInformation">
+
+                        Other Information
+                        <span class="bn">
+                            / অন্যান্য তথ্য
+                        </span>
+
+                    </label>
+
+                    <textarea
+                        id="otherInformation"
+                        placeholder="আপনার সমস্যা বা প্রয়োজনীয় তথ্য লিখুন..."
+                    ></textarea>
+
+                </div>
+
+
+            </form>
+
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="goToStep(1)"
+                >
+                    Back / ফিরে যান
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="goToPayment()"
+                >
+                    Continue / Payment
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STEP 3 PAYMENT
+        ================================================== -->
+
+        <div
+            class="step"
+            id="step3"
+        >
+
+            <div class="step-header">
+
+                <h2>
+                    Payment
+                </h2>
+
+                <p>
+                    পেমেন্ট সম্পন্ন করে তথ্য দিন
+                </p>
+
+            </div>
+
+
+            <div class="payment-card">
+
+
+                <div class="selected-service-label">
+
+                    Selected Service:
+                    <strong id="paymentServiceName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="payment-price">
+
+                    <div class="payment-price-label">
+
+                        Service Charge
+                        <br>
+                        সার্ভিস চার্জ
+
+                    </div>
+
+                    <div
+                        class="payment-amount"
+                        id="servicePrice"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="payment-message"
+                    id="paymentInstruction"
+                >
+                    Payment instruction
+                </div>
+
+
+                <div class="bkash-label">
+
+                    Send Money via bKash
+                    / বিকাশ Send Money
+
+                </div>
+
+                <div class="bkash-number">
+
+                    01986862669
+
+                </div>
+
+
+                <div class="payment-help">
+
+                    শুধুমাত্র উপরের bKash নম্বরে
+                    Send Money করুন।
+
+                </div>
+
+            </div>
+
+
+            <div class="reference-box">
+
+                <strong>
+                    Payment Reference / পেমেন্ট রেফারেন্স
+                </strong>
+
+                <br>
+
+                Transaction ID অথবা যে bKash নম্বর
+                থেকে টাকা পাঠিয়েছেন,
+                তার যেকোনো একটি নিচে দিন।
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="paymentReference">
+
+                    Transaction ID / bKash Number
+
+                    <span class="required">
+                        *
+                    </span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="paymentReference"
+                    placeholder="Transaction ID অথবা bKash Number"
+                    autocomplete="off"
+                >
+
+            </div>
+
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="goToStep(2)"
+                >
+                    Back / ফিরে যান
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="submitButton"
+                    onclick="submitOrder()"
+                >
+                    Submit Order / অর্ডার করুন
+                </button>
+
+            </div>
+
+
+            <div
+                class="loading"
+                id="loading"
+            >
+
+                <span class="spinner"></span>
+
+                Order submitting...
+                / অর্ডার জমা হচ্ছে...
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STEP 4
+        ================================================== -->
+
+        <div
+            class="step"
+            id="step4"
+        >
+
+            <div class="success">
+
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+
+                <h2>
+                    Order Submitted Successfully!
+                </h2>
+
+
+                <p class="success-description">
+
+                    আপনার অর্ডার সফলভাবে জমা হয়েছে।
+                    আমাদের টিম আপনার তথ্য যাচাই করে
+                    WhatsApp-এর মাধ্যমে আপনার সাথে যোগাযোগ করবে।
+
+                </p>
+
+
+                <div class="order-label">
+
+                    Your Order Code
+                    <br>
+                    আপনার অর্ডার কোড
+
+                </div>
+
+
+                <div
+                    class="order-code"
+                    id="orderCode"
+                >
+                    -
+                </div>
+
+
+                <p class="success-description">
+
+                    এই Order Code-টি সংরক্ষণ করে রাখুন।
+
+                </p>
+
+
+                <a
+                    class="whatsapp-btn"
+                    href="https://wa.me/8801410003483"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    💬 WhatsApp এ যোগাযোগ করুন
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <footer class="footer">
+
+        Apple ID Service
+        •
+        Secure & Reliable Support
+
+    </footer>
+
+
+</main>
+
+
+<script>
+
+/* =========================================================
+   GOOGLE APPS SCRIPT
+   ORIGINAL URL PRESERVED
+========================================================= */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxrbUJxAjWXxOLppMtpCLDj_-rXs-2aMrytrkm794YTm5mUn0rQ-pAuvmxlpl5g00VY/exec";
+
+
+/* =========================================================
+   GLOBAL SERVICE
+========================================================= */
+
+let selectedService = "";
+
+
+/* =========================================================
+   SELECT SERVICE
+========================================================= */
+
+function selectService(card){
+
+    const cards =
+        document.querySelectorAll(".service-card");
+
+
+    cards.forEach(function(item){
+
+        item.classList.remove("selected");
+
+        item.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+    });
+
+
+    card.classList.add("selected");
+
+    card.setAttribute(
+        "aria-pressed",
+        "true"
+    );
+
+
+    selectedService =
+        card.getAttribute("data-service");
+
+
+    hideError();
+
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message){
+
+    const box =
+        document.getElementById("alertBox");
+
+
+    box.textContent = message;
+
+    box.classList.add("show");
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function hideError(){
+
+    const box =
+        document.getElementById("alertBox");
+
+
+    box.textContent = "";
+
+    box.classList.remove("show");
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress(step){
+
+    for(let i = 1; i <= 4; i++){
+
+        const item =
+            document.getElementById(
+                "progress" + i
+            );
+
+
+        item.classList.remove("active");
+        item.classList.remove("completed");
+
+
+        if(i < step){
+
+            item.classList.add(
+                "completed"
+            );
+
+        }
+
+
+        if(i === step){
+
+            item.classList.add(
+                "active"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   STEP NAVIGATION
+========================================================= */
+
+function goToStep(step){
+
+    hideError();
+
+
+    document
+        .querySelectorAll(".step")
+        .forEach(function(section){
+
+            section.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    const target =
+        document.getElementById(
+            "step" + step
+        );
+
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    updateProgress(step);
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   STEP 1 → STEP 2
+========================================================= */
+
+function goToInformation(){
+
+    hideError();
+
+
+    if(!selectedService){
+
+        showError(
+            "দয়া করে প্রথমে একটি Service নির্বাচন করুন।"
+        );
+
+        return;
+
+    }
+
+
+    const newAppleFields =
+        document.getElementById(
+            "newAppleFields"
+        );
+
+
+    const recoveryFields =
+        document.getElementById(
+            "recoveryFields"
+        );
+
+
+    if(
+        selectedService ===
+        "New Apple ID Create"
+    ){
+
+        newAppleFields.style.display =
+            "block";
+
+        recoveryFields.style.display =
+            "none";
+
+    }
+
+
+    else if(
+        selectedService ===
+        "Apple Account Recovery"
+    ){
+
+        newAppleFields.style.display =
+            "none";
+
+        recoveryFields.style.display =
+            "block";
+
+    }
+
+
+    else{
+
+        newAppleFields.style.display =
+            "none";
+
+        recoveryFields.style.display =
+            "none";
+
+    }
+
+
+    goToStep(2);
+
+}
+
+
+/* =========================================================
+   EMAIL VALIDATION
+========================================================= */
+
+function isValidEmail(email){
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+
+}
+
+
+/* =========================================================
+   BANGLADESHI PHONE VALIDATION
+========================================================= */
+
+function isValidPhone(phone){
+
+    const cleaned =
+        phone.replace(
+            /[\s\-()+]/g,
+            ""
+        );
+
+
+    return (
+        /^01[3-9]\d{8}$/.test(cleaned)
+        ||
+        /^8801[3-9]\d{8}$/.test(cleaned)
+    );
+
+}
+
+
+/* =========================================================
+   STEP 2 → PAYMENT
+========================================================= */
+
+function goToPayment(){
+
+    hideError();
+
+
+    /* -----------------------------------------
+       NEW APPLE ID
+    ----------------------------------------- */
+
+    if(
+        selectedService ===
+        "New Apple ID Create"
+    ){
+
+        const fullName =
+            document
+                .getElementById("fullName")
+                .value
+                .trim();
+
+
+        const birthdayDate =
+            document
+                .getElementById("birthdayDate")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+
+        const phone =
+            document
+                .getElementById("phoneNumber")
+                .value
+                .trim();
+
+
+        if(!fullName){
+
+            showError(
+                "দয়া করে Full Name লিখুন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!birthdayDate){
+
+            showError(
+                "দয়া করে Birthday Date দিন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!email){
+
+            showError(
+                "দয়া করে Email Address দিন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!isValidEmail(email)){
+
+            showError(
+                "দয়া করে সঠিক Email Address দিন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!phone){
+
+            showError(
+                "দয়া করে Phone Number দিন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!isValidPhone(phone)){
+
+            showError(
+                "দয়া করে সঠিক Phone Number দিন।"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* -----------------------------------------
+       RECOVERY
+    ----------------------------------------- */
+
+    if(
+        selectedService ===
+        "Apple Account Recovery"
+    ){
+
+        const email =
+            document
+                .getElementById(
+                    "recoveryEmail"
+                )
+                .value
+                .trim();
+
+
+        if(!email){
+
+            showError(
+                "দয়া করে Apple Account-এর Email দিন।"
+            );
+
+            return;
+
+        }
+
+
+        if(!isValidEmail(email)){
+
+            showError(
+                "দয়া করে সঠিক Email Address দিন।"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    /* -----------------------------------------
+       WHATSAPP
+    ----------------------------------------- */
+
+    const whatsapp =
+        document
+            .getElementById(
+                "whatsappNumber"
+            )
+            .value
+            .trim();
+
+
+    if(!whatsapp){
+
+        showError(
+            "দয়া করে WhatsApp Number দিন।"
+        );
+
+        return;
+
+    }
+
+
+    if(!isValidPhone(whatsapp)){
+
+        showError(
+            "দয়া করে সঠিক WhatsApp Number দিন।"
+        );
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------
+       PAYMENT SERVICE
+    ----------------------------------------- */
+
+    document
+        .getElementById(
+            "paymentServiceName"
+        )
+        .textContent =
+        selectedService;
+
+
+    const amount =
+        document.getElementById(
+            "servicePrice"
+        );
+
+
+    const instruction =
+        document.getElementById(
+            "paymentInstruction"
+        );
+
+
+    /* NEW APPLE ID = 350 */
+
+    if(
+        selectedService ===
+        "New Apple ID Create"
+    ){
+
+        amount.textContent =
+            "৳350";
+
+
+        instruction.innerHTML =
+            "<strong>৳350 Send Money করুন</strong>";
+
+    }
+
+
+    /* RECOVERY = 200 */
+
+    else if(
+        selectedService ===
+        "Apple Account Recovery"
+    ){
+
+        amount.textContent =
+            "৳200";
+
+
+        instruction.innerHTML =
+            "<strong>৳200 Send Money করুন</strong>";
+
+    }
+
+
+    /* OTHER = 100 */
+
+    else if(
+        selectedService ===
+        "Other Service Request"
+    ){
+
+        amount.textContent =
+            "৳100";
+
+
+        instruction.innerHTML =
+            "<strong>৳100 Send Money করুন</strong>";
+
+    }
+
+
+    goToStep(3);
+
+}
+
+
+/* =========================================================
+   SUBMIT ORDER
+   GOOGLE SHEET DATA STRUCTURE PRESERVED
+========================================================= */
+
+async function submitOrder(){
+
+    hideError();
+
+
+    const paymentReference =
+        document
+            .getElementById(
+                "paymentReference"
+            )
+            .value
+            .trim();
+
+
+    if(!paymentReference){
+
+        showError(
+            "দয়া করে Transaction ID অথবা bKash Number দিন।"
+        );
+
+        return;
+
+    }
+
+
+    const submitButton =
+        document.getElementById(
+            "submitButton"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    submitButton.disabled = true;
+
+    loading.classList.add(
+        "show"
+    );
+
+
+    let fullName = "";
+    let birthdayDate = "";
+    let email = "";
+    let phoneNumber = "";
+
+
+    /* -----------------------------------------
+       NEW APPLE ID DATA
+    ----------------------------------------- */
+
+    if(
+        selectedService ===
+        "New Apple ID Create"
+    ){
+
+        fullName =
+            document
+                .getElementById(
+                    "fullName"
+                )
+                .value
+                .trim();
+
+
+        birthdayDate =
+            document
+                .getElementById(
+                    "birthdayDate"
+                )
+                .value
+                .trim();
+
+
+        email =
+            document
+                .getElementById(
+                    "email"
+                )
+                .value
+                .trim();
+
+
+        phoneNumber =
+            document
+                .getElementById(
+                    "phoneNumber"
+                )
+                .value
+                .trim();
+
+    }
+
+
+    /* -----------------------------------------
+       RECOVERY EMAIL
+    ----------------------------------------- */
+
+    if(
+        selectedService ===
+        "Apple Account Recovery"
+    ){
+
+        email =
+            document
+                .getElementById(
+                    "recoveryEmail"
+                )
+                .value
+                .trim();
+
+    }
+
+
+    /* -----------------------------------------
+       SHARED DATA
+    ----------------------------------------- */
+
+    const whatsappNumber =
+        document
+            .getElementById(
+                "whatsappNumber"
+            )
+            .value
+            .trim();
+
+
+    const otherInformation =
+        document
+            .getElementById(
+                "otherInformation"
+            )
+            .value
+            .trim();
+
+
+    /* -----------------------------------------
+       IMPORTANT:
+       SAME GOOGLE SHEET DATA STRUCTURE
+    ----------------------------------------- */
+
+    const orderData = {
+
+        service:
+            selectedService,
+
+        fullName:
+            fullName,
+
+        birthdayDate:
+            birthdayDate,
+
+        email:
+            email,
+
+        phoneNumber:
+            phoneNumber,
+
+        whatsappNumber:
+            whatsappNumber,
+
+        otherInformation:
+            otherInformation,
+
+        paymentMethod:
+            "bKash",
+
+        paymentReference:
+            paymentReference
+
+    };
+
+
+    try{
+
+        const response =
+            await fetch(
+                SCRIPT_URL,
+                {
+                    method:"POST",
+
+                    headers:{
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
+
+                    body:
+                        JSON.stringify(
+                            orderData
+                        )
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if(
+            result &&
+            result.success
+        ){
+
+            document
+                .getElementById(
+                    "orderCode"
+                )
+                .textContent =
+                result.orderId ||
+                "Submitted";
+
+
+            goToStep(4);
+
+        }
+
+
+        else{
+
+            throw new Error(
+                result &&
+                result.message
+                    ? result.message
+                    : "Order submission failed."
+            );
+
+        }
+
+    }
+
+
+    catch(error){
+
+        console.error(error);
+
+
+        showError(
+            "অর্ডার জমা দেওয়া যায়নি। " +
+            "Internet connection অথবা " +
+            "Google Apps Script deployment পরীক্ষা করুন।"
+        );
+
+
+        submitButton.disabled =
+            false;
+
+    }
+
+
+    finally{
+
+        loading.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+updateProgress(1);
+
+
+/* =========================================================
+   ACCESSIBILITY STATE
+========================================================= */
+
+document
+    .querySelectorAll(".service-card")
+    .forEach(function(card){
+
+        card.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+    });
+
+</script>
+
+</body>
+</html>
